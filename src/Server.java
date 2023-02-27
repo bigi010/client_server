@@ -2,6 +2,7 @@
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.*;
 import java.net.*;
@@ -45,7 +46,7 @@ class ServerThread extends Thread{
                 writer.flush();
                 System.out.println("Command from Client:"  +line);
 
-                String path = "C:\\Users\\BIGI\\Desktop\\Java_Intern\\" ;
+                String path = "./" ;
                 String database;
                 String table;
                 int startIndex;
@@ -93,7 +94,12 @@ class ServerThread extends Thread{
                     fileWriter.write(jsonArray.toString());
                     fileWriter.flush();
                 } else if(command[0].equalsIgnoreCase("select")){
-
+                    table = command [3];
+                    FileReader fileReader = new FileReader(table+".json");
+                    JsonParser jsonParser = new JsonParser();
+                    Object object = jsonParser.parse(fileReader);
+                    JsonArray jsonArray = (JsonArray) object;
+                    System.out.println(jsonArray);
                 }
                 line = bufferedReader.readLine();
             }
