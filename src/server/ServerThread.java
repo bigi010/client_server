@@ -1,32 +1,11 @@
-
+package server;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.*;
-import java.net.*;
-
-public class Server {
-    public static void main(String[] args) throws Exception {
-        ServerSocket serverSocket = new ServerSocket(4252);
-        while(true){
-            try{
-                Socket socket = serverSocket.accept();
-                System.out.println("Connection has been made");
-                ServerThread serverThread = new ServerThread(socket);
-                serverThread.start();
-
-                /*InputStreamReader streamReader = new InputStreamReader(socket.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(streamReader);
-                String command = bufferedReader.readLine();
-                System.out.println("Command received from Client: "+ command);*/
-            }catch (Exception e){
-                System.out.println("Connection Error");
-            }
-        }
-    }
-}
+import java.net.Socket;
 
 class ServerThread extends Thread{
     String line = null;

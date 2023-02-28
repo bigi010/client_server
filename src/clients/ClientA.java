@@ -1,3 +1,5 @@
+package clients;
+
 import java.io.*;
 import java.net.*;
 
@@ -26,7 +28,7 @@ public class ClientA {
                 writer.println(line);
                 writer.flush();
                 response = brInputStream.readLine();
-                System.out.println("Response from Server:" +response);
+                System.out.println("Response from Server.Server:" +response);
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
